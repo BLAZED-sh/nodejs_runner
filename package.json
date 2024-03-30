@@ -10,10 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/express": "^4.17.21",
-    "ethers": "^5.7.2",
-    "express": "^4.19.1",
-    "isolated-vm": "^4.7.2",
-    "web3": "^4.6.0"
+    "ethers": "^5.7.2"
   }
 }
