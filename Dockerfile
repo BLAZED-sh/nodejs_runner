@@ -2,6 +2,8 @@ FROM node:21-alpine3.18
 
 RUN apk update && apk add --no-cache dumb-init
 
+WORKDIR /app
+
 ARG UNAME=node
 ARG UID=1000
 ARG GID=1000
