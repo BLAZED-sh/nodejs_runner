@@ -11,17 +11,6 @@ console.log = function(...args) {
   oldConsoleLog(`[${new Date().toLocaleString()}]`, ...args);
 };
 
-const PRINT_BLAZED_BANNER = function() {
-  oldConsoleLog(`
-  _     _                   _       _     
- | |   | |                 | |     | |    
- | |__ | | __ _ _______  __| |  ___| |__  
- | '_ \\| |/ _\` |_  / _ \\/ _\` | / __| '_ \\
- | |_) | | (_| |/ /  __/ (_| |_\\__ \\ | | |
- |_.__/|_|\\__,_/___\\___|\\__,_(_)___/_| |_|
-      `);
-};
-
 const BLAZED_RUNNER_SERVER = http.createServer(function(REQUEST, RESPONSE) {
   if (REQUEST.method !== "POST") {
     RESPONSE.write("405");
@@ -51,11 +40,9 @@ const BLAZED_RUNNER_SERVER = http.createServer(function(REQUEST, RESPONSE) {
     // Close the server
     BLAZED_RUNNER_SERVER.close();
 
-    PRINT_BLAZED_BANNER();
-
     // Run the code
     eval(BODY);
   });
 });
 
-BLAZED_RUNNER_SERVER.listen(BLAZED_RUNNER_PORT)
+BLAZED_RUNNER_SERVER.listen(BLAZED_RUNNER_PORT);

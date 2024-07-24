@@ -8,4 +8,6 @@ EXPOSE 42069
 
 ADD . .
 
+RUN npm install
+
 ENTRYPOINT ["dumb-init", "node", "index.js"]
