@@ -40,8 +40,8 @@ const BLAZED_RUNNER_SERVER = http.createServer(function(REQUEST, RESPONSE) {
     // Close the server
     BLAZED_RUNNER_SERVER.close();
 
-    // Run the code
-    eval(BODY);
+    // Run with source-map url
+    eval(BODY + "//# sourceURL=script.js");
   });
 });
 

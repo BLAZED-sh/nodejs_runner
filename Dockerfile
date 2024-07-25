@@ -13,4 +13,4 @@ ADD . .
 
 RUN corepack pnpm install
 
-ENTRYPOINT ["dumb-init", "node", "--inspect", "127.0.0.1:42070", "index.js"]
+ENTRYPOINT ["dumb-init", "node", "--inspect=127.0.0.1:42070", "index.js"]
