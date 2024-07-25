@@ -4,10 +4,13 @@ RUN apk update && apk add --no-cache dumb-init
 
 WORKDIR /app
 
+# Code exec
 EXPOSE 42069
+# Debug
+EXPOSE 42070
 
 ADD . .
 
 RUN npm install
 
-ENTRYPOINT ["dumb-init", "node", "index.js"]
+ENTRYPOINT ["dumb-init", "node", "--inspect", "127.0.0.1:42070", "index.js"]
