@@ -6,10 +6,10 @@ const BLAZED_RUNNER_PORT = process.env.BLAZED_RUNNER_PORT
   : 42069;
 
 // console.log wrapper with timestamp
-const oldConsoleLog = console.log;
-console.log = function(...args) {
-  oldConsoleLog(`[${new Date().toLocaleString()}]`, ...args);
-};
+// const oldConsoleLog = console.log;
+// console.log = function(...args) {
+//   oldConsoleLog(`[${new Date().toLocaleString()}]`, ...args);
+// };
 
 const BLAZED_RUNNER_SERVER = http.createServer(function(REQUEST, RESPONSE) {
   if (REQUEST.method !== "POST") {
