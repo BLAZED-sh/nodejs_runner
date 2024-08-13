@@ -41,6 +41,7 @@ const BLAZED_RUNNER_SERVER = http.createServer(function(REQUEST, RESPONSE) {
     BLAZED_RUNNER_SERVER.close();
 
     // Run with source-map url
+    console.log("[BLAZED.sh] Executing your script...")
     eval(BODY + "//# sourceURL=script.js");
   });
 });
