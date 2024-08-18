@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bufferutil": "^4.0.8",
     "ethers": "^5.7.2",
     "web3": "^4.11.1",
     "web3-providers-ipc": "^4.0.7"
