@@ -11,6 +11,6 @@ EXPOSE 42070
 
 ADD . .
 
-RUN npm install
+RUN corepack pnpm install
 
 ENTRYPOINT ["dumb-init", "node", "--inspect=0.0.0.0:42070", "index.js"]
