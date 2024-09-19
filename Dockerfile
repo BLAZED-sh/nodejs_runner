@@ -3,8 +3,8 @@ FROM node:21-alpine3.18
 RUN apk update && apk add --no-cache dumb-init
 
 ARG UNAME=runner
-ARG UID=1002
-ARG GID=1002
+ARG UID=1001
+ARG GID=1001
 RUN adduser -D $UNAME -g $GID -u $UID
 USER $UNAME
 
