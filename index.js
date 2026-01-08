@@ -1,11 +1,11 @@
-const RUNNER_HTTP_MODULE = require("http");
+import * as RUNNER_HTTP_MODULE from "http";
 
 const BLAZED_RUNNER_PORT = process.env.BLAZED_RUNNER_PORT
   ? parseInt(process.env.BLAZED_RUNNER_PORT)
   : 42069;
 
 const BLAZED_RUNNER_SERVER = RUNNER_HTTP_MODULE.createServer(
-  function(REQUEST, RESPONSE) {
+  function (REQUEST, RESPONSE) {
     if (REQUEST.method !== "POST") {
       RESPONSE.write("405");
       RESPONSE.end();
@@ -19,7 +19,7 @@ const BLAZED_RUNNER_SERVER = RUNNER_HTTP_MODULE.createServer(
     }
 
     let BODY = "";
-    REQUEST.on("readable", function() {
+    REQUEST.on("readable", function () {
       // Skip null
       const DATA = REQUEST.read();
       if (DATA === null) {
@@ -27,7 +27,7 @@ const BLAZED_RUNNER_SERVER = RUNNER_HTTP_MODULE.createServer(
       }
       BODY += DATA;
     });
-    REQUEST.on("end", function() {
+    REQUEST.on("end", function () {
       const JSON_BODY = JSON.parse(BODY);
       const SCRIPT = JSON_BODY.code;
       RESPONSE.write('{"status": "success"}');
@@ -38,7 +38,14 @@ const BLAZED_RUNNER_SERVER = RUNNER_HTTP_MODULE.createServer(
 
       // Run with source-map url
       console.log("[BLAZED.sh] Executing your script...");
-      eval(SCRIPT + "//# sourceURL=script.js");
+      // const encodedCode = URL.createObjectURL(
+      //   new Blob([`${SCRIPT} //# sourceURL=script.js`], {
+      //     type: "text/javascript",
+      //   }),
+      // );
+      // import(encodedCode)
+      //
+      new Function(SCRIPT)()
     });
   },
 );
