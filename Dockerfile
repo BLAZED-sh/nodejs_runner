@@ -6,6 +6,11 @@ ARG UNAME=runner
 ARG UID=1001
 ARG GID=1001
 RUN adduser -D $UNAME -g $GID -u $UID
+
+# Add user to eth rpc group
+RUN addgroup -g 1654 eth
+RUN addgroup $UNAME eth
+
 USER $UNAME
 
 WORKDIR /app
