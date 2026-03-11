@@ -20,4 +20,8 @@ ADD . .
 
 RUN corepack pnpm install
 
-ENTRYPOINT ["dumb-init", "node", "--inspect=0.0.0.0:42070", "index.js"]
+HEALTHCHECK --interval=1s --timeout=2s --retries=10 \
+  CMD wget -qO- http://127.0.0.1:42069/ || exit 1
+
+#ENTRYPOINT ["dumb-init", "node", "--inspect=0.0.0.0:42070", "index.js"]
+ENTRYPOINT ["dumb-init", "node", "index.js"]
