@@ -33,8 +33,8 @@ const BLAZED_RUNNER_SERVER = RUNNER_HTTP_MODULE.createServer(
       RESPONSE.write(`{"status": "success", "time": ${+new Date()}}`);
       RESPONSE.end();
 
-      // Close the server
-      BLAZED_RUNNER_SERVER.close();
+      // For now we dont close the server to make HEALTHCHECK work after eval
+      // BLAZED_RUNNER_SERVER.close();
 
       // Run with source-map url
       eval(SCRIPT + "//# sourceURL=script.js");
