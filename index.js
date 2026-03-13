@@ -33,8 +33,10 @@ const BLAZED_RUNNER_SERVER = RUNNER_HTTP_MODULE.createServer(
       RESPONSE.write(`{"status": "success", "time": ${+new Date()}}`);
       RESPONSE.end();
 
-      // For now we dont close the server to make HEALTHCHECK work after eval
-      // BLAZED_RUNNER_SERVER.close();
+      // Unref the server so it no longer keeps the event loop alive.
+      // The server still responds to healthchecks, but once the eval'd
+      // code's async work drains, Node will exit naturally.
+      BLAZED_RUNNER_SERVER.unref();
 
       // Run with source-map url
       eval(SCRIPT + "//# sourceURL=script.js");
